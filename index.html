@@ -332,6 +332,71 @@
   }
   .btn-expert:hover { opacity: 0.85; }
 
+  /* ========== 問い合わせフォーム ========== */
+  .contact-section { padding: 40px 0 80px; }
+  .contact-head { text-align: center; margin-bottom: 32px; }
+  .contact-head h2 { font-size: clamp(24px, 4vw, 32px); margin: 12px 0 8px; font-weight: 900; }
+  .contact-head p { color: var(--text-soft); margin: 0; font-size: 14px; }
+
+  .contact-form {
+    background: var(--card);
+    border-radius: var(--radius-xl);
+    padding: 36px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-soft);
+  }
+  .contact-form .field { margin-bottom: 20px; }
+  .contact-form label {
+    display: block; font-weight: 700; font-size: 14px;
+    margin-bottom: 8px; color: var(--text);
+  }
+  .contact-form .req {
+    display: inline-block;
+    background: var(--orange-deep); color: #fff;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 8px; border-radius: 999px;
+    margin-left: 6px; letter-spacing: 0.04em;
+  }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 100%; padding: 14px 18px;
+    background: var(--card);
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 15px; font-family: inherit;
+    transition: border-color 0.15s;
+    resize: vertical;
+  }
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+
+  .diag-preview {
+    margin: 24px 0;
+    background: var(--accent-pale);
+    border: 1px dashed var(--accent);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+  }
+  .diag-preview-tag {
+    display: inline-block;
+    font-size: 12px; color: var(--accent-deep);
+    font-weight: 800; margin-bottom: 8px;
+  }
+  .diag-preview-body { font-size: 13px; line-height: 1.8; color: var(--text); }
+  .diag-preview-row { padding: 2px 0; }
+  .diag-preview-row b { color: var(--text-soft); margin-right: 6px; font-weight: 700; }
+
+  .contact-status {
+    margin-top: 18px; padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600;
+  }
+  .contact-status.ok { background: var(--success-pale); color: var(--success); }
+  .contact-status.ng { background: var(--danger-pale); color: var(--danger); }
+
   /* ========== Footer 拡張 ========== */
   footer .foot-title { color: var(--text); font-weight: 800; margin: 0 0 8px; font-size: 15px; }
   footer .foot-about { color: var(--text-soft); margin: 0 0 14px; font-size: 13px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
@@ -631,7 +696,7 @@
   /* ========== Print ========== */
   @media print {
     body { background: #fff; color: #000; font-size: 12px; }
-    .topnav, .hero, .features, .why, .howto, .preview-section, .form-section, .expert-section, .cta-card, .result-actions, footer { display: none !important; }
+    .topnav, .hero, .features, .why, .howto, .preview-section, .form-section, .expert-section, .contact-section, .cta-card, .result-actions, footer { display: none !important; }
     .result-area { padding: 0; }
     .wrap-narrow { max-width: 100%; padding: 0; }
     .result-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; padding: 16px; }
@@ -1029,8 +1094,57 @@
     </div>
     <div class="expert-cta">
       <span class="expert-price">レビュー費用 <b>¥30,000〜</b>（規模・内容により応相談）</span>
-      <a href="mailto:h.tanaka@justforfun.co.jp,k.tanaka@justforfun.co.jp?subject=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%80%8B%E5%88%A5%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=JustForFun%20%E5%BE%A1%E4%B8%AD%0A%0A%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E5%80%8B%E5%88%A5%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%82%92%E4%BE%9D%E9%A0%BC%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82%0A%0A%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%90%8D%EF%BC%9A%0A%E9%96%8B%E5%82%AC%E4%BA%88%E5%AE%9A%E6%97%A5%EF%BC%9A%0A%E4%BC%9A%E5%A0%B4%EF%BC%9A%0A%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%9A" class="btn-expert">専門家レビューについて問い合わせる →</a>
+      <a href="#contact" class="btn-expert">専門家レビューについて問い合わせる →</a>
     </div>
+  </div>
+</section>
+
+<!-- ========== 問い合わせフォーム ========== -->
+<section class="contact-section" id="contact">
+  <div class="wrap-narrow">
+    <div class="contact-head">
+      <span class="why-tag">CONTACT</span>
+      <h2>専門家レビューに申し込む</h2>
+      <p>下記フォームから送信ください。担当者から2営業日以内に折り返しご連絡します。</p>
+    </div>
+
+    <form id="contactForm" class="contact-form" onsubmit="return false;">
+      <div class="field">
+        <label for="cName">お名前 <span class="req">必須</span></label>
+        <input type="text" id="cName" name="name" required placeholder="山田 太郎" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="cEmail">メールアドレス <span class="req">必須</span></label>
+        <input type="email" id="cEmail" name="email" required placeholder="you@example.com" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="cMessage">ご相談内容 <span class="req">必須</span></label>
+        <textarea id="cMessage" name="message" required rows="5" placeholder="イベント名・開催予定日・会場・相談したい内容などをご記入ください。"></textarea>
+      </div>
+
+      <!-- 診断結果プレビュー（診断後のみ表示） -->
+      <div id="diagPreviewBox" class="diag-preview hidden">
+        <div class="diag-preview-head">
+          <span class="diag-preview-tag">📎 診断結果も一緒に送信されます</span>
+        </div>
+        <div id="diagPreviewBody" class="diag-preview-body"></div>
+      </div>
+
+      <div class="submit-row">
+        <button type="button" class="btn-diag" id="btnSendContact">この内容で送信する</button>
+        <p class="hint" id="contactHint">送信ボタンを押すと、お問い合わせ内容が JustForFun に送られます。</p>
+      </div>
+
+      <!-- 成功・エラー表示 -->
+      <div id="contactSuccess" class="contact-status hidden ok">
+        ✅ 送信が完了しました。担当者より2営業日以内にご連絡いたします。
+      </div>
+      <div id="contactError" class="contact-status hidden ng">
+        ❌ 送信に失敗しました。お手数ですがしばらく時間をおいて再度お試しください。
+      </div>
+    </form>
   </div>
 </section>
 
@@ -1078,7 +1192,7 @@
       <h3>この結果を一緒に磨き上げませんか？</h3>
       <p>JustForFunのプロデューサーがあなたのイベントを個別レビュー。会場下見・当日マニュアル・キャスティング・危機管理まで伴走します。</p>
       <div class="price">レビュー費用 <b>¥30,000〜</b>（応相談）</div><br>
-      <a id="ctaLink" class="btn-cta-paid" href="mailto:h.tanaka@justforfun.co.jp,k.tanaka@justforfun.co.jp?subject=%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%80%8B%E5%88%A5%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=JustForFun%20%E5%BE%A1%E4%B8%AD%0A%0A%E8%A8%BA%E6%96%AD%E7%B5%90%E6%9E%9C%E3%82%92%E5%85%83%E3%81%AB%E5%80%8B%E5%88%A5%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%82%92%E4%BE%9D%E9%A0%BC%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82%0A%0A%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E5%90%8D%EF%BC%9A%0A%E9%96%8B%E5%82%AC%E4%BA%88%E5%AE%9A%E6%97%A5%EF%BC%9A%0A%E4%BC%9A%E5%A0%B4%EF%BC%9A%0A%E9%80%A3%E7%B5%A1%E5%85%88%EF%BC%9A">専門家に相談する →</a>
+      <a id="ctaLink" class="btn-cta-paid" href="#contact">この診断結果を持って相談する →</a>
     </div>
 
     <div class="result-actions">
@@ -1097,6 +1211,16 @@
 
 <script>
 "use strict";
+
+// ============================================================================
+// 送信先設定 — Apps Script デプロイ後のURLをここに貼り付ける
+// セットアップ手順: docs/APPS_SCRIPT_SETUP.md を参照
+// ============================================================================
+const APPS_SCRIPT_URL = "REPLACE_WITH_DEPLOYED_APPS_SCRIPT_URL";
+
+// 最新の診断入力 / 結果（フォーム送信時に添付）
+let lastDiagnosisInput = null;
+let lastDiagnosisResult = null;
 
 // ============================================================================
 // ルールデータ
@@ -1491,11 +1615,16 @@ document.getElementById("btnDiagnose").addEventListener("click", () => {
     return;
   }
   const result = diagnose(input);
+  lastDiagnosisInput = input;
+  lastDiagnosisResult = result;
   renderSummary(input);
   renderList("equipmentList", result.equipment);
   renderList("riskList", result.risks);
   renderList("venueList", result.venue);
   renderStaff(result.staff);
+
+  // 問い合わせフォームに診断結果プレビューを表示
+  updateContactDiagPreview();
 
   document.getElementById("resultArea").classList.remove("hidden");
   document.getElementById("resultArea").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1504,12 +1633,145 @@ document.getElementById("btnDiagnose").addEventListener("click", () => {
 document.getElementById("btnRedo").addEventListener("click", () => {
   document.getElementById("diagForm").reset();
   document.getElementById("resultArea").classList.add("hidden");
+  lastDiagnosisInput = null;
+  lastDiagnosisResult = null;
+  updateContactDiagPreview();
   document.getElementById("form").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 document.getElementById("btnPrint").addEventListener("click", () => {
   window.print();
 });
+
+// ============================================================================
+// 問い合わせフォーム — 診断結果プレビュー
+// ============================================================================
+
+function updateContactDiagPreview() {
+  const box = document.getElementById("diagPreviewBox");
+  const body = document.getElementById("diagPreviewBody");
+  if (!lastDiagnosisInput) {
+    box.classList.add("hidden");
+    body.innerHTML = "";
+    return;
+  }
+  const i = lastDiagnosisInput;
+  const r = lastDiagnosisResult;
+  const flags = [];
+  if (i.merch) flags.push("物販");
+  if (i.food) flags.push("飲食");
+  if (i.qa) flags.push("Q&A");
+  if (i.stream) flags.push("配信");
+  if (i.lateNight) flags.push("深夜");
+
+  body.innerHTML = `
+    <div class="diag-preview-row"><b>イベントタイプ:</b> ${LABELS.eventType[i.eventType]}</div>
+    <div class="diag-preview-row"><b>想定キャパ:</b> ${LABELS.capacity[i.capacity]}</div>
+    <div class="diag-preview-row"><b>会場タイプ:</b> ${LABELS.venueType[i.venueType]}</div>
+    <div class="diag-preview-row"><b>環境:</b> ${LABELS.env[i.env]}</div>
+    ${flags.length ? `<div class="diag-preview-row"><b>オプション:</b> ${flags.join(" / ")}</div>` : ""}
+    ${i.eventDate ? `<div class="diag-preview-row"><b>開催予定日:</b> ${i.eventDate}</div>` : ""}
+    <div class="diag-preview-row"><b>診断結果サマリー:</b> 機材${r.equipment.length}項目 / リスク${r.risks.length}項目 / 会場確認${r.venue.length}項目 / 推奨スタッフ${r.staff.heads}名</div>
+  `;
+  box.classList.remove("hidden");
+}
+
+// ============================================================================
+// 問い合わせフォーム — 送信処理
+// ============================================================================
+
+async function submitContact() {
+  const btn = document.getElementById("btnSendContact");
+  const hint = document.getElementById("contactHint");
+  const successEl = document.getElementById("contactSuccess");
+  const errorEl = document.getElementById("contactError");
+
+  // リセット
+  successEl.classList.add("hidden");
+  errorEl.classList.add("hidden");
+
+  // 入力値取得
+  const name = document.getElementById("cName").value.trim();
+  const email = document.getElementById("cEmail").value.trim();
+  const message = document.getElementById("cMessage").value.trim();
+
+  // バリデーション
+  if (!name || !email || !message) {
+    errorEl.textContent = "❌ お名前・メール・ご相談内容はすべて入力してください。";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.textContent = "❌ メールアドレスの形式が正しくありません。";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
+  // 設定チェック
+  if (APPS_SCRIPT_URL.startsWith("REPLACE_")) {
+    errorEl.textContent = "❌ 送信先が未設定です。サイト管理者へお知らせください（管理者: docs/APPS_SCRIPT_SETUP.md を参照）。";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
+  // 送信データ組み立て
+  const i = lastDiagnosisInput || {};
+  const r = lastDiagnosisResult || {};
+  const flags = [];
+  if (i.merch) flags.push("物販");
+  if (i.food) flags.push("飲食");
+  if (i.qa) flags.push("Q&A");
+  if (i.stream) flags.push("配信");
+  if (i.lateNight) flags.push("深夜");
+
+  const payload = new URLSearchParams({
+    timestamp: new Date().toISOString(),
+    name: name,
+    email: email,
+    message: message,
+    eventType: i.eventType ? LABELS.eventType[i.eventType] : "",
+    capacity: i.capacity ? LABELS.capacity[i.capacity] : "",
+    venueType: i.venueType ? LABELS.venueType[i.venueType] : "",
+    env: i.env ? LABELS.env[i.env] : "",
+    options: flags.join(" / "),
+    eventDate: i.eventDate || "",
+    diagnosis_summary: r.equipment ? `機材${r.equipment.length}項目 / リスク${r.risks.length}項目 / 会場確認${r.venue.length}項目 / 推奨スタッフ${r.staff.heads}名` : "（未診断）",
+    user_agent: navigator.userAgent,
+    referrer: document.referrer || "direct"
+  });
+
+  // 送信
+  btn.disabled = true;
+  btn.textContent = "送信中…";
+  hint.textContent = "送信中です。しばらくお待ちください…";
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body: payload.toString()
+    });
+    // no-cors のためレスポンスは読めない。Apps Script側のログとシートに記録されたことを前提に成功扱い
+    successEl.classList.remove("hidden");
+    btn.textContent = "送信完了";
+    hint.textContent = "ありがとうございました。担当者よりご連絡いたします。";
+    // フォームクリア
+    document.getElementById("cName").value = "";
+    document.getElementById("cEmail").value = "";
+    document.getElementById("cMessage").value = "";
+    successEl.scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (e) {
+    console.error(e);
+    errorEl.textContent = "❌ 送信に失敗しました。お手数ですがしばらく時間をおいて再度お試しください。";
+    errorEl.classList.remove("hidden");
+    btn.disabled = false;
+    btn.textContent = "この内容で送信する";
+    hint.textContent = "送信ボタンを押すと、お問い合わせ内容が JustForFun に送られます。";
+  }
+}
+
+document.getElementById("btnSendContact").addEventListener("click", submitContact);
 </script>
 
 </body>

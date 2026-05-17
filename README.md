@@ -43,11 +43,22 @@ JFFの主催・協力するイベント（トーク / 映画上映 / DJ・音楽
 
 ```
 06_PROJECTS/EVENT_DIAGNOSIS/
-├── README.md               # このファイル
-├── index.html              # 診断ツール本体（HTML+CSS+Vanilla JS / 自己完結）
+├── README.md                       # このファイル
+├── index.html                      # 診断ツール本体（HTML+CSS+Vanilla JS / 自己完結）
+├── apps_script.gs                  # 問い合わせ受信用のGoogle Apps Scriptコード
+├── docs/
+│   └── APPS_SCRIPT_SETUP.md        # 問い合わせフォームのDB（Google Sheets）連携セットアップ手順
 └── rules/
-    └── diagnosis_rules.md  # ルール定義の人間可読版（保守用）
+    └── diagnosis_rules.md          # ルール定義の人間可読版（保守用）
 ```
+
+## 問い合わせフォーム → スプレッドシート連携
+
+LP内の問い合わせフォームは、Google Apps Script経由でGoogleスプレッドシートに行追加されます。
+
+**初回セットアップ必須**: [docs/APPS_SCRIPT_SETUP.md](docs/APPS_SCRIPT_SETUP.md) の手順に従って、スプレッドシート作成 → Apps Scriptデプロイ → `index.html`の`APPS_SCRIPT_URL`定数を更新してください（所要10分）。
+
+未設定の場合、フォーム送信時に「送信先が未設定です」と表示されます。
 
 ---
 
