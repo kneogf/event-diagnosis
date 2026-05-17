@@ -7,8 +7,9 @@
 // アクティブなスプレッドシートに行を追加します。
 //
 // スプレッドシートの1行目には以下のヘッダーを設定してください:
-//   timestamp / name / email / message / eventType / capacity / venueType
-//   / env / options / eventDate / diagnosis_summary / user_agent / referrer
+//   timestamp / name / company / email / phone / support / budget / message
+//   / eventType / capacity / venueType / env / options / eventDate
+//   / diagnosis_summary / user_agent / referrer
 // ============================================================================
 
 function doPost(e) {
@@ -19,7 +20,11 @@ function doPost(e) {
     sheet.appendRow([
       p.timestamp || new Date().toISOString(),
       p.name || "",
+      p.company || "",
       p.email || "",
+      p.phone || "",
+      p.support || "",
+      p.budget || "",
       p.message || "",
       p.eventType || "",
       p.capacity || "",

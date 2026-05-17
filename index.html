@@ -357,9 +357,27 @@
     padding: 2px 8px; border-radius: 999px;
     margin-left: 6px; letter-spacing: 0.04em;
   }
+  .contact-form .opt {
+    display: inline-block;
+    background: var(--bg-soft); color: var(--text-soft);
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px;
+    margin-left: 6px; letter-spacing: 0.04em;
+    border: 1px solid var(--border);
+  }
+  .field-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-bottom: 0;
+  }
+  .field-row .field { margin-bottom: 20px; }
+  @media (max-width: 600px) {
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+  }
   .contact-form input[type="text"],
   .contact-form input[type="email"],
-  .contact-form textarea {
+  .contact-form input[type="tel"],
+  .contact-form textarea,
+  .contact-form .select-input {
     width: 100%; padding: 14px 18px;
     background: var(--card);
     color: var(--text);
@@ -369,8 +387,56 @@
     transition: border-color 0.15s;
     resize: vertical;
   }
-  .contact-form input:focus, .contact-form textarea:focus {
+  .contact-form input:focus, .contact-form textarea:focus, .contact-form .select-input:focus {
     outline: none; border-color: var(--accent);
+  }
+  .contact-form .select-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d97706' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 44px;
+    cursor: pointer;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .cb {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 14px; font-weight: 600;
+    user-select: none;
+  }
+  .cb:hover { border-color: var(--accent); }
+  .cb input[type="checkbox"] {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .cb .cb-mark {
+    width: 22px; height: 22px; border-radius: 7px;
+    border: 2px solid var(--border);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .cb .cb-mark::after { content: ""; opacity: 0; }
+  .cb:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-pale);
+  }
+  .cb:has(input:checked) .cb-mark {
+    background: var(--accent-deep); border-color: var(--accent-deep);
+  }
+  .cb:has(input:checked) .cb-mark::after {
+    content: "✓"; color: #fff; opacity: 1;
+    font-weight: 900; font-size: 13px;
   }
 
   .diag-preview {
@@ -1109,19 +1175,55 @@
     </div>
 
     <form id="contactForm" class="contact-form" onsubmit="return false;">
-      <div class="field">
-        <label for="cName">お名前 <span class="req">必須</span></label>
-        <input type="text" id="cName" name="name" required placeholder="山田 太郎" autocomplete="name">
+
+      <div class="field-row">
+        <div class="field">
+          <label for="cName">お名前 <span class="req">必須</span></label>
+          <input type="text" id="cName" name="name" required placeholder="山田 太郎" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="cCompany">会社・団体名 <span class="opt">任意</span></label>
+          <input type="text" id="cCompany" name="company" placeholder="株式会社○○ / ○○コミュニティ" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="cEmail">メールアドレス <span class="req">必須</span></label>
+          <input type="email" id="cEmail" name="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="cPhone">電話番号 <span class="opt">任意</span></label>
+          <input type="tel" id="cPhone" name="phone" placeholder="090-XXXX-XXXX" autocomplete="tel">
+        </div>
       </div>
 
       <div class="field">
-        <label for="cEmail">メールアドレス <span class="req">必須</span></label>
-        <input type="email" id="cEmail" name="email" required placeholder="you@example.com" autocomplete="email">
+        <label>ご希望のサポート内容 <span class="opt">任意・複数可</span></label>
+        <div class="checkbox-group">
+          <label class="cb"><input type="checkbox" name="support" value="会場下見の同行"><span class="cb-mark"></span><span>会場下見の同行</span></label>
+          <label class="cb"><input type="checkbox" name="support" value="当日運営マニュアル作成"><span class="cb-mark"></span><span>当日運営マニュアル作成</span></label>
+          <label class="cb"><input type="checkbox" name="support" value="キャスティング・出演者相談"><span class="cb-mark"></span><span>キャスティング・出演者相談</span></label>
+          <label class="cb"><input type="checkbox" name="support" value="危機管理・トラブル対応"><span class="cb-mark"></span><span>危機管理・トラブル対応設計</span></label>
+          <label class="cb"><input type="checkbox" name="support" value="その他"><span class="cb-mark"></span><span>その他（内容欄に記載）</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cBudget">ご予算（レビュー費用） <span class="opt">任意</span></label>
+        <select id="cBudget" name="budget" class="select-input">
+          <option value="">選択してください</option>
+          <option value="〜10万円">〜10万円</option>
+          <option value="10〜30万円">10〜30万円</option>
+          <option value="30〜100万円">30〜100万円</option>
+          <option value="100万円〜">100万円〜</option>
+          <option value="未定・要相談">未定・要相談</option>
+        </select>
       </div>
 
       <div class="field">
         <label for="cMessage">ご相談内容 <span class="req">必須</span></label>
-        <textarea id="cMessage" name="message" required rows="5" placeholder="イベント名・開催予定日・会場・相談したい内容などをご記入ください。"></textarea>
+        <textarea id="cMessage" name="message" required rows="5" placeholder="イベント名・開催予定日・現状の課題・相談したい内容などをご記入ください。"></textarea>
       </div>
 
       <!-- 診断結果プレビュー（診断後のみ表示） -->
@@ -1692,8 +1794,12 @@ async function submitContact() {
 
   // 入力値取得
   const name = document.getElementById("cName").value.trim();
+  const company = document.getElementById("cCompany").value.trim();
   const email = document.getElementById("cEmail").value.trim();
+  const phone = document.getElementById("cPhone").value.trim();
+  const budget = document.getElementById("cBudget").value;
   const message = document.getElementById("cMessage").value.trim();
+  const supportChecked = Array.from(document.querySelectorAll('input[name="support"]:checked')).map(el => el.value);
 
   // バリデーション
   if (!name || !email || !message) {
@@ -1727,7 +1833,11 @@ async function submitContact() {
   const payload = new URLSearchParams({
     timestamp: new Date().toISOString(),
     name: name,
+    company: company,
     email: email,
+    phone: phone,
+    support: supportChecked.join(" / "),
+    budget: budget,
     message: message,
     eventType: i.eventType ? LABELS.eventType[i.eventType] : "",
     capacity: i.capacity ? LABELS.capacity[i.capacity] : "",
@@ -1758,8 +1868,12 @@ async function submitContact() {
     hint.textContent = "ありがとうございました。担当者よりご連絡いたします。";
     // フォームクリア
     document.getElementById("cName").value = "";
+    document.getElementById("cCompany").value = "";
     document.getElementById("cEmail").value = "";
+    document.getElementById("cPhone").value = "";
+    document.getElementById("cBudget").value = "";
     document.getElementById("cMessage").value = "";
+    document.querySelectorAll('input[name="support"]').forEach(el => el.checked = false);
     successEl.scrollIntoView({ behavior: "smooth", block: "center" });
   } catch (e) {
     console.error(e);

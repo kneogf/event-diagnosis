@@ -26,10 +26,32 @@ Googleスプレッドシート（DB代わり）
 3. **1行目のヘッダー**を以下のように設定（コピペでOK）：
 
 ```
-timestamp	name	email	message	eventType	capacity	venueType	env	options	eventDate	diagnosis_summary	user_agent	referrer
+timestamp	name	company	email	phone	support	budget	message	eventType	capacity	venueType	env	options	eventDate	diagnosis_summary	user_agent	referrer
 ```
 
 タブ区切りで貼り付ければ自動で各列に入ります。
+
+各列の意味:
+
+| 列 | 内容 |
+|----|------|
+| timestamp | 送信日時（ISO形式） |
+| name | お名前（必須） |
+| company | 会社・団体名（任意） |
+| email | メールアドレス（必須） |
+| phone | 電話番号（任意） |
+| support | ご希望サポート（複数の場合は ` / ` 区切り） |
+| budget | ご予算（選択肢） |
+| message | ご相談内容（必須） |
+| eventType | 診断したイベントタイプ |
+| capacity | 想定キャパ |
+| venueType | 会場タイプ |
+| env | 屋内/屋外 |
+| options | 物販/飲食/Q&A/配信/深夜 |
+| eventDate | 開催予定日 |
+| diagnosis_summary | 機材・リスク・会場確認・スタッフの項目数 |
+| user_agent | 送信元ブラウザ |
+| referrer | 流入元 |
 
 4. スプレッドシートのURLをメモ。`https://docs.google.com/spreadsheets/d/【ここがシートID】/edit` の太字部分が **シートID**。
 
@@ -54,7 +76,11 @@ function doPost(e) {
     sheet.appendRow([
       p.timestamp || new Date().toISOString(),
       p.name || "",
+      p.company || "",
       p.email || "",
+      p.phone || "",
+      p.support || "",
+      p.budget || "",
       p.message || "",
       p.eventType || "",
       p.capacity || "",
